@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import './variables.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: $black;
+    font-family: "Poppins", sans-serif;
+}
+
+h1, h2, h3,
+p, span, label {
+    color: $white;
+}
+
+a {
+    text-decoration: underline $purple 1px;
+    text-underline-offset: 2px;
+    color: $purple;
+}
+
+button {
+    border: none;
+    color: $white;
+    background-color: $purple;
+    border: 1px solid $blue;
+}
