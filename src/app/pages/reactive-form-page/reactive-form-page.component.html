@@ -1,5 +1,98 @@
-<h1>Reactive Form</h1>
+<div class="container">
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+        <h1>Template Driven Form</h1>
+        <div class="name-container">
+            <label>
+                Nome <span title="Este campo é obrigatório.">*</span>
+                <input 
+                    type="text"
+                    placeholder="Seu nome"
+                    formControlName="name"
+                    required
+                />
+            </label>
+            <span class="warning-input" [ngClass]="{
+                    'visible': registerForm.get('name')?.invalid && registerForm.get('name')?.touched
+                    }">
+                    Campo não preenchido ou nome curto demais
+            </span>
+        </div>
+        <div class="email-container">
+            <label>
+                Email <span title="Este campo é obrigatório.">*</span>
+                <input 
+                    type="email" 
+                    placeholder="seuemail@email.com"
+                    formControlName="email"
+                    required
+                />
+            </label>
+            <span class="warning-input" [ngClass]="{
+                'visible': registerForm.get('email')?.invalid && registerForm.get('email')?.touched
+                }">
+                O email digitado é inválio.
+        </span>
+        </div>
+    
+        <div class="password-container">
+            <label>
+                Senha <span title="Este campo é obrigatório.">*</span>
+                <input 
+                    type="password" 
+                    placeholder="Sua senha"
+                    formControlName="password"
+                    required
+                />
+            </label>
+            <span class="warning-input" [ngClass]="{
+                'visible': registerForm.get('password')?.invalid && registerForm.get('password')?.touched
+                }">
+                Senha curta demais
+        </span>
+        </div>
+    
+        <div class="gender-container">
+            <p>Sexo <span title="Este campo é obrigatório.">*</span></p>
+            <label>
+                <input type="radio" formControlName="gender" value="Masculino">
+                Masculino
+            </label>
+            <label>
+                <input type="radio" formControlName="gender" value="Feminino">
+                Feminino
+            </label>
+        </div>
+    
+        <div class="skills-container">
+            <p>Sua principal tecnologia <span title="Este campo é obrigatório.">*</span></p>
+            <select formControlName="mainTech" required>
+                <option value="" disabled>Selecione</option>
+                @for(item of arrayTechs(); track item) {
+                    <option [value]="item">{{ item }}</option>
+                }
+            </select>
+        </div>
+    
+        <button type="submit" [disabled]="!registerForm.valid">Enviar</button>
+    </form>
 
-<form></form>
-
-<button routerLink="/home">Voltar</button>
+    @if(formSended) {
+        <div class="container-result">
+            <h2>Seus dados:</h2>
+            <tr>
+                <td>Nome: {{registerForm.get('name')?.value}}</td>
+                <td>Email: {{registerForm.get('email')?.value}}</td>
+                <td>Senha: {{registerForm.get('password')?.value}}</td>
+                <td>Sexo: {{registerForm.get('gender')?.value}}</td>
+                <td>Principal tecnologia: {{registerForm.get('mainTech')?.value}}</td>
+            </tr>
+        </div>
+    }
+    
+    
+    <p class="warning-text">
+        lembrete: essas informações não serão enviadas para nenhum local. é somente uma pequena demonstração de formulário usando angular.
+    </p>
+    
+    <button class="return-btn" routerLink="/home">Voltar</button>
+</div>
