@@ -4,13 +4,44 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: $black;
     font-family: "Poppins", sans-serif;
 }
 
+body {
+    background-color: $black;
+}
+
 h1, h2, h3,
-p, span, label {
+p, span, label,
+select, option, td {
     color: $white;
+}
+
+label span,
+p span {
+    color: red;
+}
+
+select {
+    width: 110px;
+    height: 25px;
+    background-color: $black-010;
+    border-radius: 5px;
+    border: 1px solid $black;
+    padding-left: 10px;
+    overflow: hidden;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    border: none;
+    padding-left: 5px;
+    border-radius: 5px;
+    background-color: $white;
 }
 
 a {
@@ -24,4 +55,92 @@ button {
     color: $white;
     background-color: $purple;
     border: 1px solid $blue;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    
+    form {
+        display: flex;
+        background-color: $black-010;
+        flex-direction: column;
+        width: 600px;
+        padding: 20px;
+        border-radius: 20px;
+
+        h1 {
+            text-align: center;
+        }
+
+        .name-container,
+        .email-container,
+        .password-container {
+            position: relative;
+
+            .warning-input {
+                opacity: 0;
+                color: lighten(red, 10%);
+                font-style: italic;
+
+                &.visible {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .gender-container {
+            padding-bottom: 1rem;
+            label + label {
+                padding-left: 1rem;
+            }
+        }
+        button[type="submit"] {
+            margin: 0 auto;
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+        }
+    }
+
+    .container-result {
+        width: 95%;
+        padding-top: 10px;
+        
+        h2 {
+            text-align: center;
+        }
+        
+        tr {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+    }
+
+    .warning-text {
+        width: 95%;
+        padding-top: 10px;
+        font-style: italic;
+    }
+
+    .return-btn {
+        padding: .2rem 1rem;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container{
+        width: 100%;
+        padding: 0 10px;
+        form {
+           width: 100%;
+           padding: 20px 10px;
+       }
+    }
 }
